@@ -1,3 +1,3 @@
 # pr2JSF
 
-Web applisaction (based on JSFand with Hibernate) managing Rent Library.
+Web application (using JSF and Hibernate) managing Rent Library.
