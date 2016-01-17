@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="body">
+        <h:form>
+            ISBN: <h:inputText binding="#{isbn}" required="true"/>
+            Author: <h:inputText binding="#{author}" required="true"/>
+            Title: <h:inputText binding="#{title}" required="true"/>
+            State: <h:inputText binding="#{state}" required="true"/>
+            Category: <h:inputText binding="#{cat}" required="true"/>
+            Description: <h:inputText binding="#{desc}"/>
+            <h:commandButton id="save" value="Save" action="${bookBean.add(isbn.value, author.value, title.value, desc.value, state.value, cat.value)}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

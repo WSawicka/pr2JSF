@@ -14,12 +14,13 @@
     <h:body>
         <div>
             <h:form>
-                <h:commandButton id="logIn" value="Log in" action="/logIn.xhtml"/>
-                <h:commandButton value="Search"/>
+                <h:commandButton id="addBook" value="Add book" action="/admin/addBook.xhtml"/>
+                <h:commandButton id="manageUsers" value="Manage users" action="/admin/users.xhtml"/>
                 <div id="content" class="right_content">
                     <ui:insert name="body">Content</ui:insert>
                 </div>
             </h:form>
         </div>
     </h:body>
+
 </html>
