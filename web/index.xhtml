@@ -9,7 +9,21 @@
         <ui:define name="body">
             <h:commandButton id="logIn" value="Log in" action="/logIn.xhtml"/>
             <h:commandButton id="register" value="register" action="/register.xhtml"/>
-            <h:form>                
+            <h:form> 
+                <h:dataTable value="#{messageBean.messages}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Date"/>
+                        </f:facet>
+                        <h:outputText value="#{item.date}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Text"/>
+                        </f:facet>
+                        <h:outputText value="#{item.text}"/>
+                    </h:column>
+                </h:dataTable>
                 <h:dataTable value="#{bookBean.bookTitles}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                     <h:column>
                         <f:facet name="header">

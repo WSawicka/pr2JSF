@@ -10,7 +10,6 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
@@ -25,7 +24,7 @@ and open the template in the editor.
                         <f:selectItem itemValue="employee" itemLabel="Employee"/>
                         <f:selectItem itemValue="admin" itemLabel="Admin"/>
                     </h:selectOneRadio>
-                    <h:commandButton id="register" value="Log me" action="#{userBean.register(login.value, address.value, password.value, type.value)}"/>
+                    <h:commandButton id="register" value="Register" action="#{userBean.register(login.value, address.value, password.value, type.value)}"/>
                     <h:message for="logMe"/>
                 </h:form>
             </ui:define>
