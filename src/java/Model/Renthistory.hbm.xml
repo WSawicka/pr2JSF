@@ -1,21 +1,20 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-01-09 13:04:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="Model.Renthistory" table="renthistory" catalog="bookrentdb" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
-            <column name="ID" />
-            <generator class="identity" />
-        </id>
-        <property name="user" type="string">
-            <column name="user" length="15" not-null="true" />
-        </property>
-        <property name="bookId" type="int">
-            <column name="bookID" not-null="true" />
-        </property>
-        <property name="date" type="timestamp">
-            <column name="date" length="5" not-null="true" />
-        </property>
-    </class>
+  <class catalog="bookrentdb" name="Model.Renthistory" optimistic-lock="version" table="renthistory">
+    <id name="id" type="java.lang.Integer">
+      <column name="ID"/>
+      <generator class="identity"/>
+    </id>
+    <property name="user" type="string">
+      <column length="15" name="user" not-null="true"/>
+    </property>
+    <property name="bookId" type="int">
+      <column name="bookID" not-null="true"/>
+    </property>
+    <property name="date" type="timestamp">
+      <column length="5" name="date" not-null="true"/>
+    </property>
+  </class>
 </hibernate-mapping>

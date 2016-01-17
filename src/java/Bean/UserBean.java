@@ -70,6 +70,12 @@ public class UserBean {
         }
     }
     
+    public void register(String login, String address, String password, String type) throws IOException{
+        User user = new User(login, password, type, "no", address);
+        helper.add(user);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+    }
+    
     public void delete(String id) throws IOException{
         helper.delete(Integer.parseInt(id));
         FacesContext.getCurrentInstance().getExternalContext().redirect("admin/users.xhtml");

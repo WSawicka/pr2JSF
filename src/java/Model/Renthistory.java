@@ -52,10 +52,4 @@ public class Renthistory  implements java.io.Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
-
-
-
-
 }
-
-

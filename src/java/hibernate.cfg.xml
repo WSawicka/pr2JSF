@@ -12,7 +12,7 @@
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <mapping resource="Model/Message.hbm.xml"/>
     <mapping resource="Model/Book.hbm.xml"/>
-    <mapping resource="Model/RentHistory.hbm.xml"/>
+    <mapping resource="Model/Renthistory.hbm.xml"/>
     <mapping resource="Model/User.hbm.xml"/>
     <mapping resource="Model/Rent.hbm.xml"/>
   </session-factory>

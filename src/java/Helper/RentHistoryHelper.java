@@ -6,7 +6,7 @@
 package Helper;
 
 import Model.HibernateUtil;
-import Model.RentHistory;
+import Model.Renthistory;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -20,13 +20,13 @@ import org.hibernate.Transaction;
 public class RentHistoryHelper {
     public RentHistoryHelper() {}
     
-    public List<RentHistory> getAll(){
+    public List<Renthistory> getAll(){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        List<RentHistory> list = new ArrayList<RentHistory>();
+        List<Renthistory> list = new ArrayList<Renthistory>();
         try{
             Transaction tx = session.beginTransaction();
             Query q = session.createQuery ("from RentHistory rh");
-            list = (List<RentHistory>) q.list();
+            list = (List<Renthistory>) q.list();
         } catch(Exception ex){
             ex.printStackTrace();
         } finally {
@@ -35,13 +35,13 @@ public class RentHistoryHelper {
         return list;
     }
     
-    public List<RentHistory> getAllForUser(String user){
+    public List<Renthistory> getAllForUser(String user){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        List<RentHistory> list = new ArrayList<RentHistory>();
+        List<Renthistory> list = new ArrayList<Renthistory>();
         try{
             Transaction tx = session.beginTransaction();
             Query q = session.createQuery ("from RentHistory rh where rh.user ='" + user + "'");
-            list = (List<RentHistory>) q.list();
+            list = (List<Renthistory>) q.list();
         } catch(Exception ex){
             ex.printStackTrace();
         } finally {
@@ -50,7 +50,7 @@ public class RentHistoryHelper {
         return list;
     }
     
-    public void add(RentHistory rentHistory){
+    public void add(Renthistory rentHistory){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
         try{

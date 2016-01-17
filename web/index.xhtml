@@ -7,6 +7,8 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="./template.xhtml">
         <ui:define name="body">
+            <h:commandButton id="logIn" value="Log in" action="/logIn.xhtml"/>
+            <h:commandButton id="register" value="register" action="/register.xhtml"/>
             <h:form>                
                 <h:dataTable value="#{bookBean.bookTitles}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                     <h:column>
@@ -49,7 +51,6 @@
                         <f:facet name="header">
                             <h:outputText value=" "/>
                         </f:facet>
-                        <h:commandLink value="Rent"/>
                     </h:column>
                 </h:dataTable>
             </h:form>

@@ -18,104 +18,109 @@ import org.hibernate.Transaction;
  * @author mloda
  */
 public class UserHelper {
-    
-    public UserHelper() {}
-    
-    public List<User> getAll(){
+
+    public UserHelper() {
+    }
+
+    public List<User> getAll() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<User> list = new ArrayList<User>();
-        try{
+        try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery ("from User u");
+            Query q = session.createQuery("from User u");
             list = (List<User>) q.list();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             session.close();
         }
         return list;
     }
-    
-    public List<User> getNormal(){
+
+    public List<User> getNormal() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<User> list = new ArrayList<User>();
-        try{
+        try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery ("from User u where u.type ='normal'");
+            Query q = session.createQuery("from User u where u.type ='normal'");
             list = (List<User>) q.list();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             session.close();
         }
         return list;
     }
-    
-    public List<User> getEmployee(){
+
+    public List<User> getEmployee() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<User> list = new ArrayList<User>();
-        try{
+        try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery ("from User u where u.type ='emp'");
+            Query q = session.createQuery("from User u where u.type ='emp'");
             list = (List<User>) q.list();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             session.close();
         }
         return list;
     }
-    
-    public List<User> getAdmin(){
+
+    public List<User> getAdmin() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<User> list = new ArrayList<User>();
-        try{
+        try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery ("from User u where u.type ='admin'");
+            Query q = session.createQuery("from User u where u.type ='admin'");
             list = (List<User>) q.list();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             session.close();
         }
         return list;
     }
-    
-    public User getByLoginPassword(String login, String password){
+
+    public User getByLoginPassword(String login, String password) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         User user = null;
-        try{
+        try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery ("from User u where u.login='" +login+ "' and password='" +password+ "'");
+            Query q = session.createQuery("from User u where u.login='" + login + "' and password='" + password + "'");
             user = (User) q.uniqueResult();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             session.close();
         }
         return user;
     }
-    
-    public void add(User user){
+
+    public void add(User user) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
-        try{
-            session.save(user);
-            tx.commit();
-        } catch(Exception ex){
+        try {
+            Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from User u where u.login='" + user.getLogin()
+                    + "' and password='" + user.getPassword() + "' and address ='" + user.getAddress() + "'");
+            if ((User) q.uniqueResult() == null) {
+                session.save(user);
+                tx.commit();
+            }
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
-    public void delete(int id){
+
+    public void delete(int id) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        try{
+        try {
             Query q = session.createQuery("from User u where u.id='" + id + "'");
-            User user = (User)q.uniqueResult();
+            User user = (User) q.uniqueResult();
             session.delete(user);
             tx.commit();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
