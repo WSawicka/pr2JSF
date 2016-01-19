@@ -42,7 +42,7 @@ public class UserHelper {
         List<User> list = new ArrayList<User>();
         try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from User u where u.type ='normal'");
+            Query q = session.createQuery("from User u where u.type ='normal' and u.confirmed='yes'");
             list = (List<User>) q.list();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -57,7 +57,7 @@ public class UserHelper {
         List<User> list = new ArrayList<User>();
         try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from User u where u.type ='emp'");
+            Query q = session.createQuery("from User u where u.type ='emp' and u.confirmed='yes'");
             list = (List<User>) q.list();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -72,7 +72,7 @@ public class UserHelper {
         List<User> list = new ArrayList<User>();
         try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from User u where u.type ='admin'");
+            Query q = session.createQuery("from User u where u.type ='admin' and u.confirmed='yes'");
             list = (List<User>) q.list();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -96,6 +96,21 @@ public class UserHelper {
         }
         return user;
     }
+    
+    public List<User> getNotConfirmed(){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        List<User> list = new ArrayList<User>();
+        try {
+            Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from User u where u.confirmed='no'");
+            list = (List<User>) q.list();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return list;
+    }
 
     public void add(User user) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -112,6 +127,20 @@ public class UserHelper {
         }
     }
 
+    public void confirm(int id){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            Query q = session.createQuery("from User u where u.id='" + id + "'");
+            User user = (User) q.uniqueResult();
+            user.setConfirmed("yes");
+            session.update(user);
+            tx.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public void delete(int id) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();

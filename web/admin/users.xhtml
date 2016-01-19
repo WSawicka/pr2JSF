@@ -25,7 +25,7 @@
                     <f:facet name="header">
                         <h:outputText value=" "/>
                     </f:facet>
-                    <h:commandLink action="#{userBean.delete(itemN.id)}" value="Delete"/>
+                    <h:commandButton action="#{userBean.delete(itemN.id)}" value="Delete"/>
                 </h:column>
             </h:dataTable>
         
@@ -47,7 +47,7 @@
                     <f:facet name="header">
                         <h:outputText value=" "/>
                     </f:facet>
-                    <h:commandLink action="${userBean.delete(itemE.id)}" value="Delete"/>
+                    <h:commandButton action="${userBean.delete(itemE.id)}" value="Delete"/>
                 </h:column>
             </h:dataTable>
         
@@ -64,6 +64,34 @@
                         <h:outputText value="Address"/>
                     </f:facet>
                     <h:outputText value="#{itemA.address}"/>
+                </h:column>
+            </h:dataTable>
+            
+            Not confirmed:
+            <h:dataTable value="#{userBean.notConfirmed}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Login"/>
+                    </f:facet>
+                    <h:outputText value="#{item.login}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Address"/>
+                    </f:facet>
+                    <h:outputText value="#{item.address}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value=" "/>
+                    </f:facet>
+                    <h:commandButton action="${userBean.confirm(item.id)}" value="Confirm"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value=" "/>
+                    </f:facet>
+                    <h:commandButton action="${userBean.delete(item.id)}" value="Delete"/>
                 </h:column>
             </h:dataTable>
         </h:form>

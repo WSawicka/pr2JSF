@@ -28,6 +28,7 @@ public class UserBean {
     private DataModel normalUserList;
     private DataModel employeeList;
     private DataModel adminList;
+    private DataModel notConfirmed;
     
     public UserBean() {
         helper = new UserHelper();
@@ -46,6 +47,11 @@ public class UserBean {
     public DataModel getAdminList() {
         adminList = new ListDataModel(helper.getAdmin());
         return adminList;
+    }
+    
+    public DataModel getNotConfirmed() {
+        notConfirmed = new ListDataModel(helper.getNotConfirmed());
+        return notConfirmed;
     }
     
     public void logIn(String login, String password) throws IOException{
@@ -76,8 +82,12 @@ public class UserBean {
         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
     
+    public void confirm(String id){
+        helper.confirm(Integer.parseInt(id));
+    }
+    
     public void delete(String id) throws IOException{
         helper.delete(Integer.parseInt(id));
-        FacesContext.getCurrentInstance().getExternalContext().redirect("admin/users.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("users.xhtml");
     }
 }
