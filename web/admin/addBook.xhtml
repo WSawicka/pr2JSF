@@ -5,12 +5,12 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     <ui:define name="body">
         <h:form>
-            ISBN: <h:inputText binding="#{isbn}" required="true"/>
-            Author: <h:inputText binding="#{author}" required="true"/>
-            Title: <h:inputText binding="#{title}" required="true"/>
-            State: <h:inputText binding="#{state}" required="true"/>
-            Category: <h:inputText binding="#{cat}" required="true"/>
-            Description: <h:inputText binding="#{desc}"/>
+            ISBN: <h:inputText value="#{bookBean.isbn}" binding="#{isbn}" required="true"/>
+            Author: <h:inputText value="#{bookBean.author}" binding="#{author}" required="true"/>
+            Title: <h:inputText value="#{bookBean.title}" binding="#{title}" required="true"/>
+            State: <h:inputText value="#{bookBean.state}" binding="#{state}" required="true"/>
+            Category: <h:inputText value="#{bookBean.category}" binding="#{cat}" required="true"/>
+            Description: <h:inputText value="#{bookBean.description}" binding="#{desc}"/>
             <h:commandButton id="save" value="Save" action="${bookBean.add(isbn.value, author.value, title.value, desc.value, state.value, cat.value)}"/>
         </h:form>
     </ui:define>

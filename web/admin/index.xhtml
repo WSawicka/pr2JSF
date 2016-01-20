@@ -27,6 +27,49 @@
                     <h:commandButton action="${messageBean.delete(item.id)}" value="Delete"/>
                 </h:column>
             </h:dataTable>
+            <h:dataTable value="#{bookBean.lastThree}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ISBN"/>
+                    </f:facet>
+                    <h:outputText value="#{item.isbn}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Author"/>
+                    </f:facet>
+                    <h:outputText value="#{item.author}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Title"/>
+                    </f:facet>
+                    <h:outputText value="#{item.title}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Description"/>
+                    </f:facet>
+                    <h:outputText value="#{item.description}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="State"/>
+                    </f:facet>
+                    <h:outputText value="#{item.state}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Category"/>
+                    </f:facet>
+                    <h:outputText value="#{item.category}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value=" "/>
+                    </f:facet>
+                </h:column>
+            </h:dataTable>
             <h:dataTable value="#{bookBean.bookTitles}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                 <h:column>
                     <f:facet name="header">
@@ -68,7 +111,7 @@
                     <f:facet name="header">
                         <h:outputText value=" "/>
                     </f:facet>
-                    <h:commandLink value="Edit"/>
+                    <h:commandButton action="${bookBean.edit(item.id)}" value="Edit"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
