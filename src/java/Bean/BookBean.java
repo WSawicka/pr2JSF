@@ -19,6 +19,7 @@ public class BookBean {
 
     private DataModel bookTitles;
     private DataModel newBooks;
+    private DataModel searchResults;
     private BookHelper helper;
     private int isbn;
     private String author;
@@ -48,6 +49,15 @@ public class BookBean {
         return newBooks;
     }
 
+    public DataModel getSearchResults() {
+        return searchResults;
+    }
+    
+    public void search(String text) throws IOException{
+        this.searchResults = new ListDataModel(helper.getByNameAuthorISBN(text));
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/pr2/searchResult.xhtml");
+    }
+    
     public void delete(String id) throws IOException {
         helper.delete(Integer.parseInt(id));
     }

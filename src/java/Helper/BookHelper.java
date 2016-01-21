@@ -22,7 +22,7 @@ public class BookHelper {
         List<Book> list = new ArrayList<Book>();
         try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Book b");
+            Query q = session.createQuery("from Book b where state='free'");
             list = (List<Book>) q.list();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -47,8 +47,8 @@ public class BookHelper {
         }
         return book;
     }
-    
-    public List<Book> getLastThree(){
+
+    public List<Book> getLastThree() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<Book> books = null;
         try {
@@ -70,40 +70,24 @@ public class BookHelper {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         String[] split = text.split(" ");
         List<Book> books = new ArrayList<Book>();
-        for (int i = 0; i > split.length; i++) {
+        Transaction tx = session.beginTransaction();
+        for (int i = 0; i < split.length; i++) {
             try {
-                Transaction tx = session.beginTransaction();
-                Query q = session.createQuery("from Book b where b.name = '" + split[i] + "'");
-                books.add((Book) q.list());
-                tx = null;
+                String query = "from Book b where"
+                        + " b.title like '%" + split[i] + "%'"
+                        + " or b.author like '%" + split[i] + "%'"
+                        + " or b.isbn like '%" + split[i] + "%'";
+                Query q = session.createQuery(query);
+                List<Book> temp = (List<Book>) q.list();
+                for (Book b : temp) {
+                    
+                    books.add(b);
+                }
             } catch (Exception ex) {
                 ex.printStackTrace();
-            } finally {
-                session.close();
-            }
-
-            try {
-                Transaction tx = session.beginTransaction();
-                Query q = session.createQuery("from Book b where b.author = '" + split[i] + "'");
-                books.add((Book) q.list());
-                tx = null;
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            } finally {
-                session.close();
-            }
-
-            try {
-                Transaction tx = session.beginTransaction();
-                Query q = session.createQuery("from Book b where b.isbn = '" + split[i] + "'");
-                books.add((Book) q.list());
-                tx = null;
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            } finally {
-                session.close();
             }
         }
+        tx = null;
         return books;
     }
 
