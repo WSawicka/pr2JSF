@@ -20,6 +20,7 @@
                 <h:commandButton value="Manage users" action="/admin/users.xhtml"/>
                 <h:commandButton value="Go to basket" action="/admin/rents.xhtml"/>
                 <h:commandButton id="showRentHistory" value="Show rent history" action="/admin/rentHistory.xhtml"/>
+                <h:commandButton value="Log out" action="#{userBean.logOut()}"/>
                 <div id="content" class="right_content">
                     <ui:insert name="body">Content</ui:insert>
                 </div>

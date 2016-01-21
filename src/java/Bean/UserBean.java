@@ -108,6 +108,13 @@ public class UserBean {
         }
     }
     
+    public void logOut() throws IOException{
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession(true);
+        session.setAttribute("LoggedUser", "");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/pr2/index.xhtml");
+    }
+    
     public void register(String login, String address, String password, String type) throws IOException{
         User user = new User(login, password, type, "no", address);
         helper.add(user);
