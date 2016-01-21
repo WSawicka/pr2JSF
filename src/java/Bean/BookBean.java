@@ -3,11 +3,16 @@ package Bean;
 import Helper.BookHelper;
 import Model.Book;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -16,10 +21,10 @@ import javax.faces.model.ListDataModel;
 @ManagedBean
 @SessionScoped
 public class BookBean {
-
     private DataModel bookTitles;
     private DataModel newBooks;
     private DataModel searchResults;
+    private List<Book> booksInBasket;
     private BookHelper helper;
     private int isbn;
     private String author;
@@ -37,6 +42,27 @@ public class BookBean {
         description = null;
         state = null;
         category = null;
+    }
+    
+    @PostConstruct
+    public void init(){
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession(true);
+        booksInBasket = (List<Book>) session.getAttribute("Basket");
+    }
+    
+    public void addToBasket(Book bookId) throws IOException{
+        if(booksInBasket == null) booksInBasket = new LinkedList<Book>();
+        booksInBasket.add(bookId);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("rents.xhtml");
+    }
+    
+    public void cancelRent(Book book){
+        booksInBasket.remove(book);
+    }
+    
+    public List<Book> getBooksInBasket() {
+        return booksInBasket;
     }
 
     public DataModel getBookTitles() {

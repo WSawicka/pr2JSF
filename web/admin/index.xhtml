@@ -111,6 +111,12 @@
                     <f:facet name="header">
                         <h:outputText value=" "/>
                     </f:facet>
+                    <h:commandButton action="${bookBean.addToBasket(item)}" value="Rent"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value=" "/>
+                    </f:facet>
                     <h:commandButton action="${bookBean.edit(item.id)}" value="Edit"/>
                 </h:column>
                 <h:column>

@@ -7,6 +7,7 @@ package Helper;
 
 import Model.Rent;
 import Model.HibernateUtil;
+import Model.User;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -36,12 +37,13 @@ public class RentHelper {
         return list;
     }
     
-    public List<Rent> getAllForUser(String user){
+    public List<Rent> getAllForUser(Object object){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<Rent> list = new ArrayList<Rent>();
+        User user = (User) object;
         try{
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery ("from Rent r where r.user ='" + user + "'");
+            Query q = session.createQuery ("from Rent r where r.user ='" + user.getId() + "'");
             list = (List<Rent>) q.list();
         } catch(Exception ex){
             ex.printStackTrace();
