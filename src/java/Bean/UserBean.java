@@ -8,6 +8,9 @@ package Bean;
 import Helper.UserHelper;
 import Model.User;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -29,11 +32,40 @@ public class UserBean {
     private DataModel employeeList;
     private DataModel adminList;
     private DataModel notConfirmed;
+    private DataModel allUsers;
+    private String login;
+    private List<String> allLogins;
+    private User selectedUser; // selected by admin to show rent history
     
     public UserBean() {
         helper = new UserHelper();
+        allLogins = new LinkedList<String>();
     }
 
+    @PostConstruct
+    public void init(){
+        allUsers = new ListDataModel(helper.getAll());
+        for(Object o : allUsers){
+            allLogins.add((String) o.toString());
+        }
+    }
+    
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+     
+    public List<String> getAllLogins(){
+        return allLogins;
+    }
+    
+    public User getByLogin(String login){
+        return helper.getByLogin(login);
+    }
+    
     public DataModel getNormalUserList() {
         normalUserList = new ListDataModel(helper.getNormal());
         return normalUserList;

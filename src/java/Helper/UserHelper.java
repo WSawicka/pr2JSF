@@ -27,7 +27,7 @@ public class UserHelper {
         List<User> list = new ArrayList<User>();
         try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from User u");
+            Query q = session.createQuery("select u.login from User u");
             list = (List<User>) q.list();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -35,6 +35,21 @@ public class UserHelper {
             session.close();
         }
         return list;
+    }
+    
+    public User getByLogin(String login){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        User user = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from User u where u.login='" + login + "'");
+            user = (User) q.uniqueResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return user;
     }
 
     public List<User> getNormal() {
