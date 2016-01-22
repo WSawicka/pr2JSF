@@ -111,7 +111,7 @@ public class UserBean {
     public void logOut() throws IOException{
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession(true);
-        session.setAttribute("LoggedUser", "");
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("LoggedUser");
         FacesContext.getCurrentInstance().getExternalContext().redirect("/pr2/index.xhtml");
     }
     
