@@ -6,27 +6,51 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>Facelets Template</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"/>
     </h:head>
 
     <h:body>
-        <div>
-            <h:form>
-                <h:commandButton value="Home" action="/admin/index.xhtml"/>
-                <h:commandButton value="Add message" action="/admin/addMessage.xhtml"/>
-                <h:commandButton value="Add book" action="/admin/addBook.xhtml"/>
-                <h:commandButton value="Manage book rents" action="/admin/manageRents.xhtml"/>
-                <h:commandButton value="Manage users" action="/admin/users.xhtml"/>
-                <h:commandButton value="Go to basket" action="/admin/rents.xhtml"/>
-                <h:commandButton id="showRentHistory" value="Show rent history" action="/admin/rentHistory.xhtml"/>
-                <h:commandButton value="Log out" action="#{userBean.logOut()}"/>
+        <header class="navbar-default">
+            <div class="container navbar-default">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h:form>
+                                <h:commandButton class="btn btn-primary navbar-btn" value="Home" action="/admin/index.xhtml"/>
+                                <div class="btn-group btn-group-sm">
+                                    <h:commandButton class="btn btn-default" value="Add message" action="/admin/addMessage.xhtml"/>
+                                    <h:commandButton class="btn btn-default" value="Add book" action="/admin/addBook.xhtml"/>
+                                    <h:commandButton class="btn btn-default" value="Manage book rents" action="/admin/manageRents.xhtml"/>
+                                    <h:commandButton class="btn btn-default" value="Manage users" action="/admin/users.xhtml"/>
+                                    <h:commandButton class="btn btn-default" value="Go to basket" action="/admin/rents.xhtml"/>
+                                    <h:commandButton class="btn btn-default" id="showRentHistory" value="Show rent history" action="/admin/rentHistory.xhtml"/>
+                                </div>
+                            </h:form>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <form class="navbar-form navbar-left" role="search">
+                                <h:form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search"/>
+                                    </div>
+                                    <h:commandButton class="btn btn-info" value="Search" action="#{bookBean.search(searchText.value)}"/>
+                                </h:form>
+                            </form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <h:form>
+                                    <h:commandButton class="btn btn-success navbar-btn" value="Log out" action="#{userBean.logOut()}"/>
+                                </h:form>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
                 <div id="content" class="right_content">
                     <ui:insert name="body">Content</ui:insert>
                 </div>
-            </h:form>
-        </div>
+            </div>
+        </header>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"/>
     </h:body>
-
 </html>

@@ -6,20 +6,51 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"/>
     </h:head>
 
     <h:body>
-        <div>
-            <h:form>
-                <h:commandButton id="addBook" value="Add book" action="/employee/addBook.xhtml"/>
-                <h:commandButton id="manageUsers" value="Manage users" action="/employee/users.xhtml"/>
+        <header class="navbar-default">
+            <div class="container navbar-default">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h:form>
+                                <h:commandButton class="btn btn-primary navbar-btn" value="Home" action="/employee/index.xhtml"/>
+                                <div class="btn-group btn-group-sm">
+                                    <h:commandButton class="btn btn-default" value="Add message" action="/employee/addMessage.xhtml"/>
+                                    <h:commandButton class="btn btn-default" value="Add book" action="/employee/addBook.xhtml"/>
+                                    <h:commandButton class="btn btn-default" value="Manage book rents" action="/employee/manageRents.xhtml"/>
+                                    <h:commandButton class="btn btn-default" value="Manage users" action="/employee/users.xhtml"/>
+                                    <h:commandButton class="btn btn-default" value="Go to basket" action="/employee/rents.xhtml"/>
+                                    <h:commandButton class="btn btn-default" id="showRentHistory" value="Show rent history" action="/employee/rentHistory.xhtml"/>
+                                </div>
+                            </h:form>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <form class="navbar-form navbar-left" role="search">
+                                <h:form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search"/>
+                                    </div>
+                                    <h:commandButton class="btn btn-info" value="Search" action="#{bookBean.search(searchText.value)}"/>
+                                </h:form>
+                            </form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <h:form>
+                                    <h:commandButton class="btn btn-success navbar-btn" value="Log out" action="#{userBean.logOut()}"/>
+                                </h:form>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
                 <div id="content" class="right_content">
                     <ui:insert name="body">Content</ui:insert>
                 </div>
-            </h:form>
-        </div>
+            </div>
+        </header>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"/>
     </h:body>
-
 </html>
