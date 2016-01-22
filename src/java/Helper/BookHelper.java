@@ -80,7 +80,7 @@ public class BookHelper {
                 Query q = session.createQuery(query);
                 List<Book> temp = (List<Book>) q.list();
                 for (Book b : temp) {
-                    
+
                     books.add(b);
                 }
             } catch (Exception ex) {
@@ -97,6 +97,22 @@ public class BookHelper {
         try {
             Query q = session.createQuery("from Book b where b.isbn='" + book.getIsbn() + "'");
             if ((Book) q.uniqueResult() == null) {
+                session.save(book);
+            }
+            tx.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void setStateFree(Integer bookId) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            Query q = session.createQuery("from Book b where b.id='" + bookId + "'");
+            Book book = (Book) q.uniqueResult();
+            if (book != null) {
+                book.setState("free");
                 session.save(book);
             }
             tx.commit();

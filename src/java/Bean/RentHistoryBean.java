@@ -8,10 +8,8 @@ package Bean;
 import Helper.RentHistoryHelper;
 import Helper.UserHelper;
 import Model.User;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -22,6 +20,7 @@ import javax.faces.model.ListDataModel;
 @ManagedBean
 @RequestScoped
 public class RentHistoryBean {
+
     private RentHistoryHelper helper;
     private UserHelper userHelper;
     private DataModel userRents;
@@ -34,8 +33,8 @@ public class RentHistoryBean {
     public DataModel getUserRents() {
         return userRents;
     }
-    
-    public void getAllForUser(String selectedLogin){
+
+    public void getAllForUser(String selectedLogin) {
         User user = userHelper.getByLogin(selectedLogin);
         userRents = new ListDataModel(helper.getAllForUser(user));
     }

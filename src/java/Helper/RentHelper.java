@@ -5,10 +5,12 @@
  */
 package Helper;
 
+import Model.Book;
 import Model.Rent;
 import Model.HibernateUtil;
 import Model.User;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,59 +22,78 @@ import org.hibernate.Transaction;
  */
 public class RentHelper {
 
-    public RentHelper() {}
-    
-    public List<Rent> getAll(){
+    public RentHelper() {
+    }
+
+    public List<Rent> getAll() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<Rent> list = new ArrayList<Rent>();
-        try{
+        try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery ("from Rent r");
+            Query q = session.createQuery("from Rent r");
             list = (List<Rent>) q.list();
-        } catch(Exception ex){
+            tx.commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            session.close();
         }
         return list;
     }
-    
-    public List<Rent> getAllForUser(Object object){
+
+    public List<Rent> getAllForUser(Object object) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<Rent> list = new ArrayList<Rent>();
         User user = (User) object;
-        try{
+        try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery ("from Rent r where r.user ='" + user.getId() + "'");
+            Query q = session.createQuery("from Rent r where r.user ='" + user.getLogin() + "'");
             list = (List<Rent>) q.list();
-        } catch(Exception ex){
+            tx.commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            session.close();
         }
         return list;
     }
-    
-    public void add(Rent rent){
+
+    public boolean rentBook(Integer bookId) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
-        try{
+        boolean result = false;
+        try {
+            Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from Book b where b.id ='" + bookId + "'");
+            Book book = (Book) q.uniqueResult();
+            if (book.getState().equals("free")) {
+                book.setState("taken");
+                session.update(book);
+                result = true;
+            }
+            tx.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    public void add(String user, Integer bookId, Date date) {
+        Rent rent = new Rent(user, bookId, date);
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            Transaction tx = session.beginTransaction();
             session.save(rent);
             tx.commit();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
-    public void delete(int id){
+
+    public void delete(int id) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        try{
+        try {
             Query q = session.createQuery("from Rent r where r.id='" + id + "'");
-            Rent rent = (Rent)q.uniqueResult();
+            Rent rent = (Rent) q.uniqueResult();
             session.delete(rent);
             tx.commit();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

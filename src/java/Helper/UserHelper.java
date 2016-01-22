@@ -36,8 +36,8 @@ public class UserHelper {
         }
         return list;
     }
-    
-    public User getByLogin(String login){
+
+    public User getByLogin(String login) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         User user = null;
         try {
@@ -111,8 +111,8 @@ public class UserHelper {
         }
         return user;
     }
-    
-    public List<User> getNotConfirmed(){
+
+    public List<User> getNotConfirmed() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<User> list = new ArrayList<User>();
         try {
@@ -142,7 +142,7 @@ public class UserHelper {
         }
     }
 
-    public void confirm(int id){
+    public void confirm(int id) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
         try {
@@ -155,7 +155,7 @@ public class UserHelper {
             ex.printStackTrace();
         }
     }
-    
+
     public void delete(int id) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();

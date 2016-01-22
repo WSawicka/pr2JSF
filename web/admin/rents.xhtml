@@ -6,7 +6,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="body">
-        <h:form>
+        <h:form id="basketTable">
             You chosed:
             <h:dataTable value="#{bookBean.booksInBasket}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                 <h:column>
@@ -55,8 +55,9 @@
                     <f:facet name="header">
                         <h:outputText value=" "/>
                     </f:facet>
-                    <h:commandButton value="Confirm"/>
+                    <h:commandButton value="Confirm" action="#{rentBean.confirmRentingBook(item)}"/>
                 </h:column>
+                <h:message for="basketTable"/>
             </h:dataTable>
                            
             Your basket:
@@ -72,12 +73,6 @@
                         <h:outputText value="Date"/>
                     </f:facet>
                     <h:outputText value="#{item.date}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=" "/>
-                    </f:facet>
-                    <h:commandButton value="Return"/>
                 </h:column>
             </h:dataTable>
             

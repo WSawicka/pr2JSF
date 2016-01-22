@@ -22,9 +22,10 @@ import javax.faces.model.ListDataModel;
 @ManagedBean
 @SessionScoped
 public class MessageBean {
+
     private DataModel messages;
     private MessageHelper helper;
-    
+
     public MessageBean() {
         helper = new MessageHelper();
     }
@@ -33,13 +34,13 @@ public class MessageBean {
         messages = new ListDataModel(helper.getAll());
         return messages;
     }
-    
-    public void delete(String id) throws IOException{
+
+    public void delete(String id) throws IOException {
         helper.delete(Integer.parseInt(id));
         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
-    
-    public void add(String text) throws IOException{
+
+    public void add(String text) throws IOException {
         Date date = new Date();
         Message message = new Message(text, date);
         helper.add(message);
