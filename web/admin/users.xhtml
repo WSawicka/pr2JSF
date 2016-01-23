@@ -8,7 +8,7 @@
     <ui:define name="body">      
         <h:form>
             Users:
-            <h:dataTable value="#{userBean.normalUserList}" var="itemN" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+            <h:dataTable class="table" value="#{userBean.normalUserList}" var="itemN">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Login"/>
@@ -30,7 +30,7 @@
             </h:dataTable>
         
             Employees:
-            <h:dataTable value="#{userBean.employeeList}" var="itemE" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+            <h:dataTable class="table" value="#{userBean.employeeList}" var="itemE">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Login"/>
@@ -52,7 +52,7 @@
             </h:dataTable>
         
             Admin list:
-            <h:dataTable value="#{userBean.adminList}" var="itemA" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+            <h:dataTable class="table" value="#{userBean.adminList}" var="itemA">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Login"/>
@@ -68,7 +68,7 @@
             </h:dataTable>
             
             Not confirmed:
-            <h:dataTable value="#{userBean.notConfirmed}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+            <h:dataTable class="table" value="#{userBean.notConfirmed}" var="item">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Login"/>

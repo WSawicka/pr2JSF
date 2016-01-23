@@ -7,7 +7,7 @@
 
     <ui:define name="body">
         <h:form> 
-            <h:dataTable value="#{messageBean.messages}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+            <h:dataTable class="table" value="#{messageBean.messages}" var="item" >
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Date"/>
@@ -27,7 +27,7 @@
                     <h:commandButton action="${messageBean.delete(item.id)}" value="Delete"/>
                 </h:column>
             </h:dataTable>
-            <h:dataTable value="#{bookBean.lastThree}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+            <h:dataTable class="table" value="#{bookBean.lastThree}" var="item">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="ISBN"/>
@@ -70,7 +70,7 @@
                     </f:facet>
                 </h:column>
             </h:dataTable>
-            <h:dataTable value="#{bookBean.bookTitles}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+            <h:dataTable class="table" value="#{bookBean.bookTitles}" var="item">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="ISBN"/>

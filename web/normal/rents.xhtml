@@ -8,7 +8,7 @@
     <ui:define name="body">
         <h:form id="basketTable">
             You chosed:
-            <h:dataTable value="#{bookBean.booksInBasket}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+            <h:dataTable class="table" value="#{bookBean.booksInBasket}" var="item">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="ISBN"/>
@@ -60,8 +60,8 @@
                 <h:message for="basketTable"/>
             </h:dataTable>
                            
-            Your basket:
-            <h:dataTable value="#{rentBean.userRents}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+            Recently rented and not returned:
+            <h:dataTable class="table" value="#{rentBean.userRents}" var="item">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Book"/>

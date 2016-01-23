@@ -7,7 +7,7 @@
 
     <ui:define name="body">
         Your results:
-        <h:dataTable value="#{bookBean.searchResults}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+        <h:dataTable class="table" value="#{bookBean.searchResults}" var="item">
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="ISBN"/>
