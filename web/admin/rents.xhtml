@@ -7,75 +7,95 @@
 
     <ui:define name="body">
         <h:form id="basketTable">
-            You chosed:
-            <h:dataTable class="table" value="#{bookBean.booksInBasket}" var="item">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="ISBN"/>
-                    </f:facet>
-                    <h:outputText value="#{item.isbn}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Author"/>
-                    </f:facet>
-                    <h:outputText value="#{item.author}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Title"/>
-                    </f:facet>
-                    <h:outputText value="#{item.title}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Description"/>
-                    </f:facet>
-                    <h:outputText value="#{item.description}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="State"/>
-                    </f:facet>
-                    <h:outputText value="#{item.state}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Category"/>
-                    </f:facet>
-                    <h:outputText value="#{item.category}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=" "/>
-                    </f:facet>
-                    <h:commandButton value="Cancel" action="#{bookBean.cancelRent(item)}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=" "/>
-                    </f:facet>
-                    <h:commandButton value="Confirm" action="#{rentBean.confirmRentingBook(item)}"/>
-                </h:column>
-                <h:message for="basketTable"/>
-            </h:dataTable>
-                           
-            Recently rented and not returned:
-            <h:dataTable class="table" value="#{rentBean.userRents}" var="item">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Book"/>
-                    </f:facet>
-                    <h:outputText value="#{item.bookId}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Date"/>
-                    </f:facet>
-                    <h:outputText value="#{item.date}"/>
-                </h:column>
-            </h:dataTable>
-            
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">You chosed:</div>
+                            <div class="panel-body">
+                                <h:dataTable class="table" value="#{bookBean.booksInBasket}" var="item">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ISBN"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.isbn}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Author"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.author}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Title"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.title}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Description"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.description}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="State"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.state}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Category"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.category}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value=" "/>
+                                        </f:facet>
+                                        <h:commandButton class="btn btn-info" value="Cancel" action="#{bookBean.cancelRent(item)}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value=" "/>
+                                        </f:facet>
+                                        <h:commandButton class="btn btn-success" value="Confirm" action="#{rentBean.confirmRentingBook(item)}"/>
+                                    </h:column>
+                                    <h:message for="basketTable"/>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Recently rented and not returned:</div>
+                            <div class="panel-body">
+                                <h:dataTable class="table" value="#{rentBean.userRents}" var="item">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Book"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.bookId}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Date"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.date}"/>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </h:form>
     </ui:define>
 

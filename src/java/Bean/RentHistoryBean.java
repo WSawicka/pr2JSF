@@ -37,7 +37,7 @@ public class RentHistoryBean {
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("LoggedUser");
-        getAllForUser(user.getLogin());
+        if (user.getType().equals("normal")) getAllForUser(user.getLogin());
         return userRents;
     }
 

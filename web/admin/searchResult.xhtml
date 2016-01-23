@@ -6,50 +6,55 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="body">
-        Your results:
-        <h:dataTable class="table" value="#{bookBean.searchResults}" var="item">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="ISBN"/>
-                </f:facet>
-                <h:outputText value="#{item.isbn}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Author"/>
-                </f:facet>
-                <h:outputText value="#{item.author}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Title"/>
-                </f:facet>
-                <h:outputText value="#{item.title}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Description"/>
-                </f:facet>
-                <h:outputText value="#{item.description}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="State"/>
-                </f:facet>
-                <h:outputText value="#{item.state}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Category"/>
-                </f:facet>
-                <h:outputText value="#{item.category}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value=" "/>
-                </f:facet>
-            </h:column>
-        </h:dataTable>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Your results:</div>
+                        <div class="panel-body">
+                            <h:dataTable class="table" value="#{bookBean.searchResults}" var="item">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ISBN"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.isbn}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Author"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.author}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Title"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.title}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Description"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="State"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.state}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Category"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.category}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
 
 </ui:composition>

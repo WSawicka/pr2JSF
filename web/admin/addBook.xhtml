@@ -11,7 +11,7 @@
             State: <h:inputText value="#{bookBean.state}" binding="#{state}" required="true"/>
             Category: <h:inputText value="#{bookBean.category}" binding="#{cat}" required="true"/>
             Description: <h:inputText value="#{bookBean.description}" binding="#{desc}"/>
-            <h:commandButton id="save" value="Save" action="${bookBean.add(isbn.value, author.value, title.value, desc.value, state.value, cat.value)}"/>
+            <h:commandButton class="btn btn-info" id="save" value="Save" action="${bookBean.add(isbn.value, author.value, title.value, desc.value, state.value, cat.value)}"/>
         </h:form>
     </ui:define>
 </ui:composition>

@@ -11,7 +11,7 @@
                     Login: <h:inputText binding="#{login}"/>
                     Password: <h:inputSecret binding="#{password}"/>
                     <h:commandButton id="logMe" value="Log me" action="#{userBean.logIn(login.value, password.value)}"/>
-                    <h:message for="logMe"/>
+                    <h:message class="text-danger" for="logMe"/>
                 </h:form>
             </ui:define>
         </ui:composition>

@@ -7,93 +7,122 @@
 
     <ui:define name="body">      
         <h:form>
-            Users:
-            <h:dataTable class="table" value="#{userBean.normalUserList}" var="itemN">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Login"/>
-                    </f:facet>
-                    <h:outputText value="#{itemN.login}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Address"/>
-                    </f:facet>
-                    <h:outputText value="#{itemN.address}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=" "/>
-                    </f:facet>
-                    <h:commandButton action="#{userBean.delete(itemN.id)}" value="Delete"/>
-                </h:column>
-            </h:dataTable>
-        
-            Employees:
-            <h:dataTable class="table" value="#{userBean.employeeList}" var="itemE">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Login"/>
-                    </f:facet>
-                    <h:outputText value="#{itemE.login}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Address"/>
-                    </f:facet>
-                    <h:outputText value="#{itemE.address}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=" "/>
-                    </f:facet>
-                    <h:commandButton action="${userBean.delete(itemE.id)}" value="Delete"/>
-                </h:column>
-            </h:dataTable>
-        
-            Admin list:
-            <h:dataTable class="table" value="#{userBean.adminList}" var="itemA">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Login"/>
-                    </f:facet>
-                    <h:outputText value="#{itemA.login}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Address"/>
-                    </f:facet>
-                    <h:outputText value="#{itemA.address}"/>
-                </h:column>
-            </h:dataTable>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Not confirmed users</div>
+                            <div class="panel-body">
+                                <h:dataTable class="table" value="#{userBean.notConfirmed}" var="item">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Login"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.login}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Address"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.address}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value=" "/>
+                                        </f:facet>
+                                        <h:commandButton class="btn btn-success" action="${userBean.confirm(item.id)}" value="Confirm"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value=" "/>
+                                        </f:facet>
+                                        <h:commandButton class="btn btn-danger" action="${userBean.delete(item.id)}" value="Delete"/>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            Not confirmed:
-            <h:dataTable class="table" value="#{userBean.notConfirmed}" var="item">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Login"/>
-                    </f:facet>
-                    <h:outputText value="#{item.login}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Address"/>
-                    </f:facet>
-                    <h:outputText value="#{item.address}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=" "/>
-                    </f:facet>
-                    <h:commandButton action="${userBean.confirm(item.id)}" value="Confirm"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=" "/>
-                    </f:facet>
-                    <h:commandButton action="${userBean.delete(item.id)}" value="Delete"/>
-                </h:column>
-            </h:dataTable>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Users</div>
+                            <div class="panel-body">
+                                <h:dataTable class="table" value="#{userBean.normalUserList}" var="itemN">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Login"/>
+                                        </f:facet>
+                                        <h:outputText value="#{itemN.login}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Address"/>
+                                        </f:facet>
+                                        <h:outputText value="#{itemN.address}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <h:commandButton class="btn btn-danger" action="#{userBean.delete(itemN.id)}" value="Delete"/>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4 col-xs-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Employees</div>
+                            <div class="panel-body">
+                                <h:dataTable class="table" value="#{userBean.employeeList}" var="itemE">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Login"/>
+                                        </f:facet>
+                                        <h:outputText value="#{itemE.login}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Address"/>
+                                        </f:facet>
+                                        <h:outputText value="#{itemE.address}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value=" "/>
+                                        </f:facet>
+                                        <h:commandButton class="btn btn-danger" action="${userBean.delete(itemE.id)}" value="Delete"/>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4 col-xs-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Admin list</div>
+                            <div class="panel-body">
+                                <h:dataTable class="table" value="#{userBean.adminList}" var="itemA">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Login"/>
+                                        </f:facet>
+                                        <h:outputText value="#{itemA.login}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Address"/>
+                                        </f:facet>
+                                        <h:outputText value="#{itemA.address}"/>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </h:form>
     </ui:define>
 </ui:composition>

@@ -24,8 +24,8 @@ and open the template in the editor.
                         <f:selectItem itemValue="employee" itemLabel="Employee"/>
                         <f:selectItem itemValue="admin" itemLabel="Admin"/>
                     </h:selectOneRadio>
-                    <h:commandButton id="register" value="Register" action="#{userBean.register(login.value, address.value, password.value, type.value)}"/>
-                    <h:message for="logMe"/>
+                    <h:commandButton class="btn btn-success" id="register" value="Register" action="#{userBean.register(login.value, address.value, password.value, type.value)}"/>
+                    <h:message class="text-danger" for="logMe"/>
                 </h:form>
             </ui:define>
         </ui:composition>

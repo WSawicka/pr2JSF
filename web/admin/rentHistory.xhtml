@@ -8,24 +8,35 @@
     <ui:define name="body">
         <h:form id="select">
             Choose user:
-            <h:selectOneMenu value="#{userBean.login}">
-                <f:selectItems value="#{userBean.allLogins}" />
-            </h:selectOneMenu>
-            <h:commandButton value="Show" action="#{rentHistoryBean.getAllForUser(userBean.login)}"/>
-            <h:dataTable class="table" value="#{rentHistoryBean.userRents}" var="item" >
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Book"/>
-                    </f:facet>
-                    <h:outputText value="#{item.bookId}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Date"/>
-                    </f:facet>
-                    <h:outputText value="#{item.date}"/>
-                </h:column>
-            </h:dataTable>
+                <h:selectOneMenu class="" value="#{userBean.login}">
+                    <f:selectItems value="#{userBean.allLogins}" />
+                </h:selectOneMenu>
+            <h:commandButton class="btn btn-info" value="Show" action="#{rentHistoryBean.getAllForUser(userBean.login)}"/>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6 col xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">User history</div>
+                            <div class="panel-body">
+                                <h:dataTable class="table" value="#{rentHistoryBean.userRents}" var="item" >
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Book"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.bookId}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Date"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.date}"/>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </h:form>
     </ui:define>
 
