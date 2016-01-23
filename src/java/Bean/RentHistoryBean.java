@@ -10,8 +10,11 @@ import Helper.UserHelper;
 import Model.User;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +34,10 @@ public class RentHistoryBean {
     }
 
     public DataModel getUserRents() {
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("LoggedUser");
+        getAllForUser(user.getLogin());
         return userRents;
     }
 
